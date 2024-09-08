@@ -1,7 +1,9 @@
-import { useState, useEffect} from "react"
+import { useContext} from "react"
+import PaginationContext from "../Context/PaginationContext"
 
-export default function Pagination({pageNumber, handleNext, handlePrev}){
+export default function Pagination({pageNumber}){
 
+    const {handleNext, handlePrev} = useContext(PaginationContext);
 
     return (
     <div className="flex justify-center gap-4 p-[1rem] text-2xl h-[4rem] w-screen bg-slate-200 item-center">

@@ -1,5 +1,9 @@
-export default function MovieCard({ movie, poster, movieTitle, addToWatchList, favourite, removeFromWatchList }) {
+import { useContext } from "react";
+import MovieContext from "../Context/MovieContext";
+
+export default function MovieCard({ movie, poster, movieTitle, favourite }) {
     const tmdbBaseURL = "https://image.tmdb.org/t/p/original";
+    const {addToWatchList, removeFromWatchList} = useContext(MovieContext);
 
     return (
         <div className="relative m-4 hover:scale-110 duration-200 cursor-pointer">

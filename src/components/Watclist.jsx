@@ -1,10 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { GENRE_ID_MAPPING } from "./constant"
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import MovieContext from '../Context/MovieContext';
 
 
-export default function Watchlist({ movies, removeFromWatchList , setWatchList}) {
+export default function Watchlist() {
     const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/day';
     const tmdbBaseURL = "https://image.tmdb.org/t/p/original";
     const allGenres = "All Genres";
@@ -12,6 +13,7 @@ export default function Watchlist({ movies, removeFromWatchList , setWatchList})
     const [genres, setGenres] = useState([allGenres])
     const [selectedGenre, setSelectedGenre] = useState(allGenres);
     const [search, setSearch] = useState('');
+    const { watchList:movies, removeFromWatchList , setWatchList} = useContext(MovieContext);
 
     useEffect(() => {
         const genreList = movies.map((movieObj) => GENRE_ID_MAPPING[movieObj.genre_ids[0]])
