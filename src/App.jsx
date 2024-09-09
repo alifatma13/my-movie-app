@@ -57,14 +57,14 @@ function App() {
           <Route path="/" element={
             <>
               <Banner />
-              <PaginationContext.Provider value={{handleNext, handlePrev}}>
+              {/* <PaginationContext.Provider value={{handleNext, handlePrev}}> */}
               <Movies
                 // watchList={watchList} 
                 // addToWatchList={addToWatchList} 
                 // removeFromWatchList={removeFromWatchList}
                 pageNumber={pageNumber} 
               />
-              </PaginationContext.Provider>
+              {/* </PaginationContext.Provider> */}
 
             </>
           } />

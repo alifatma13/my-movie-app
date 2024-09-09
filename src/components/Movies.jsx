@@ -3,11 +3,13 @@ import { useState, useEffect, useContext } from "react"
 import MovieCard from "./MovieCard";
 import Pagination from "./Pagination";
 import MovieContext from "../Context/MovieContext";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function Movies({pageNumber}) {
+export default function Movies() {
   const url = 'https://api.themoviedb.org/3/trending/movie/day';
   const tmdbBaseURL = "https://image.tmdb.org/t/p/original";
   const [movies, setMovies] = useState(null);
+  const { pageNumber } = useSelector((store) => store.paginationState);
 
   const {watchList} = useContext (MovieContext);
   
@@ -39,7 +41,7 @@ export default function Movies({pageNumber}) {
           })}
         />
       ))}
-      <Pagination pageNumber={pageNumber} />
+      <Pagination/>
     </div>
   );
 }
