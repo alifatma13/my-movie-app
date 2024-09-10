@@ -4,29 +4,30 @@ import MovieCard from "./MovieCard";
 import Pagination from "./Pagination";
 import MovieContext from "../Context/MovieContext";
 import { useDispatch, useSelector } from "react-redux";
+import movieMiddleware from "../redux/movieMiddleware";
+
 
 export default function Movies() {
   const url = 'https://api.themoviedb.org/3/trending/movie/day';
   const tmdbBaseURL = "https://image.tmdb.org/t/p/original";
-  const [movies, setMovies] = useState(null);
   const { pageNumber } = useSelector((store) => store.paginationState);
-
+  const { movies, loading, error } = useSelector((store) => store.moviesState);
+  const dispatch = useDispatch();
   const {watchList} = useContext (MovieContext);
   
   useEffect(() => {
-    axios.get(url + `?api_key=53757beb3490dcadccbb1f4ab805d769&page=${pageNumber}`)
-      .then(function (response) {
-        setMovies(response.data.results);
-      })
+    dispatch(movieMiddleware(pageNumber));
   }, [pageNumber])
 
 
 
 
 
-
-  if (!movies) {
-    return (<h1>... Loading</h1>)
+  if (loading) {
+    return <h1>...Loading</h1>;
+  }
+  if (error) {
+    return <h1>OPS... Error Occured</h1>;
   }
   return (
     <div className="flex flex-wrap justify-evenly">
