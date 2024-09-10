@@ -1,5 +1,4 @@
-import axios from "axios";
-import { useState, useEffect, useContext } from "react"
+import { useEffect, useContext } from "react"
 import MovieCard from "./MovieCard";
 import Pagination from "./Pagination";
 import MovieContext from "../Context/MovieContext";
@@ -18,10 +17,6 @@ export default function Movies() {
   useEffect(() => {
     dispatch(movieMiddleware(pageNumber));
   }, [pageNumber])
-
-
-
-
 
   if (loading) {
     return <h1>...Loading</h1>;
